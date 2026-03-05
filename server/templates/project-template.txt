@@ -1,0 +1,37 @@
+=== IGNOTEC — TEMPLATE DE PROJETO (para enviar à IA) ===
+
+Instruções:
+Cole este template na sua conversa com a IA (ChatGPT, Claude, etc.) e
+descreva o projeto. Peça para ela retornar o JSON abaixo preenchido.
+Depois, salve como .json e faça upload no dashboard.
+
+---
+
+Preencha o JSON abaixo com os dados do projeto:
+
+```json
+{
+  "titulo": "",
+  "descricao": "Descrição curta para exibir no portfólio",
+  "categoria": "Web | Mobile | SaaS | API | IA",
+  "status": "planejamento | em-andamento | concluido",
+  "tecnologias": ["React", "Node.js"],
+  "link": "",
+  "visivel": false,
+
+  "_interno": {
+    "publico_alvo": "Quem vai usar este app/sistema?",
+    "dinamica": "Como o app funciona? Qual o comportamento esperado?",
+    "motivacoes": "Por que esse projeto existe? Qual problema resolve?",
+    "notas": "Anotações livres — decisões técnicas, referências, ideias",
+    "cliente": "Nome do cliente (se aplicável)",
+    "prazo": "Prazo de entrega (ex: '2026-04-15')"
+  }
+}
+```
+
+Observações:
+- Campos do bloco `_interno` NÃO aparecem no site público
+- `visivel: false` = o projeto não aparece no portfólio (só no dashboard admin)
+- `tecnologias` deve ser um array de strings
+- Você pode enviar um array de projetos: [{ ... }, { ... }]

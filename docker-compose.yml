@@ -1,0 +1,17 @@
+services:
+  ignotec:
+    build: .
+    ports:
+      - "3001:3001"
+    volumes:
+      - ignotec-data:/app/server/data
+      - ignotec-uploads:/app/server/uploads
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-ignotec-prod-secret-mude-esta-chave}
+      - NODE_ENV=production
+      - PORT=3001
+    restart: unless-stopped
+
+volumes:
+  ignotec-data:
+  ignotec-uploads:
