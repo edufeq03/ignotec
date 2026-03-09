@@ -40,8 +40,13 @@ app.use('/api/uploads', express.static(join(__dirname, 'uploads')));
 const distPath = join(__dirname, '..', 'dist');
 if (existsSync(distPath)) {
     app.use(express.static(distPath));
-    app.get([/^\/.*$/], (_req, res) => {
-        res.sendFile(join(distPath, 'index.html'));
+    // Catch-all route to serve React app for standard GET requests
+    app.use((req, res, next) => {
+        if (req.method === 'GET') {
+            res.sendFile(join(distPath, 'index.html'));
+        } else {
+            next();
+        }
     });
 }
 
