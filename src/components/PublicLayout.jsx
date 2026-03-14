@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
 import '../public.css';
 
 /* Exact original flame SVG */
@@ -34,6 +35,8 @@ const FooterFlame = () => (
 );
 
 export default function PublicLayout() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const navLinks = [
         { label: 'Sobre', href: '/#sobre' },
         { label: 'Serviços', href: '/#servicos' },
@@ -51,15 +54,15 @@ export default function PublicLayout() {
                     <span className="pub-navbar-wordmark">IGN<span>O</span>TEC</span>
                 </Link>
 
-                <ul className="pub-navbar-links">
+                <ul className={`pub-navbar-links ${isMenuOpen ? 'open' : ''}`}>
                     {navLinks.map(link => (
                         <li key={link.label}>
                             {link.href.startsWith('/#') ? (
-                                <a href={link.href} className={link.cta ? 'pub-navbar-cta' : ''}>
+                                <a href={link.href} className={link.cta ? 'pub-navbar-cta' : ''} onClick={() => setIsMenuOpen(false)}>
                                     {link.label}
                                 </a>
                             ) : (
-                                <Link to={link.href} className={link.cta ? 'pub-navbar-cta' : ''}>
+                                <Link to={link.href} className={link.cta ? 'pub-navbar-cta' : ''} onClick={() => setIsMenuOpen(false)}>
                                     {link.label}
                                 </Link>
                             )}
@@ -67,7 +70,12 @@ export default function PublicLayout() {
                     ))}
                 </ul>
 
-                <button className="pub-mobile-toggle">☰</button>
+                <button 
+                    className="pub-mobile-toggle" 
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    {isMenuOpen ? '✕' : '☰'}
+                </button>
             </nav>
 
             <Outlet />

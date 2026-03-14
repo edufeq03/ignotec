@@ -1235,6 +1235,21 @@
 @media (max-width: 900px) {
     .pub-navbar-links {
         display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--black);
+        padding: 40px 5vw;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        gap: 32px;
+        align-items: center;
+        z-index: 99;
+    }
+
+    .pub-navbar-links.open {
+        display: flex;
     }
 
     .pub-mobile-toggle {
