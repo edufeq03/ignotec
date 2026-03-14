@@ -215,39 +215,46 @@ export default function HomePage() {
                     </p>
                 ) : (
                     <div className="pub-projects-grid pub-reveal">
-                        {visibleProjects.map(project => (
-                            <div key={project.id} className="pub-project-card">
-                                <div className="pub-project-thumb">
-                                    {project.image ? (
-                                        <img src={project.image} alt={project.title}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
-                                    ) : (
-                                        <>
-                                            <div className="pub-project-thumb-bg" />
-                                            <span className="pub-project-thumb-icon">
-                                                {categoryEmojis[(project.category || '').toLowerCase()] || '💻'}
-                                            </span>
-                                        </>
-                                    )}
-                                    <span className="pub-project-type-badge">
-                                        {project.category || 'Projeto'}
-                                    </span>
-                                </div>
-                                <div className="pub-project-body">
-                                    <div className="pub-project-title">{project.title}</div>
-                                    <div className="pub-project-desc">
-                                        {project.description.length > 150 ? project.description.slice(0, 150) + '…' : project.description}
+                        {visibleProjects.map(project => {
+                            const CardWrapper = project.link ? 'a' : 'div';
+                            const wrapperProps = project.link 
+                                ? { href: project.link, target: "_blank", rel: "noopener noreferrer", style: { textDecoration: 'none', color: 'inherit' } } 
+                                : {};
+
+                            return (
+                                <CardWrapper key={project.id} className="pub-project-card" {...wrapperProps}>
+                                    <div className="pub-project-thumb">
+                                        {project.image ? (
+                                            <img src={project.image} alt={project.title}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
+                                        ) : (
+                                            <>
+                                                <div className="pub-project-thumb-bg" />
+                                                <span className="pub-project-thumb-icon">
+                                                    {categoryEmojis[(project.category || '').toLowerCase()] || '💻'}
+                                                </span>
+                                            </>
+                                        )}
+                                        <span className="pub-project-type-badge">
+                                            {project.category || 'Projeto'}
+                                        </span>
                                     </div>
-                                    {project.techs && project.techs.length > 0 && (
-                                        <div className="pub-project-stack">
-                                            {project.techs.map(t => (
-                                                <span key={t} className="pub-stack-item">{t}</span>
-                                            ))}
+                                    <div className="pub-project-body">
+                                        <div className="pub-project-title">{project.title}</div>
+                                        <div className="pub-project-desc">
+                                            {project.description.length > 150 ? project.description.slice(0, 150) + '…' : project.description}
                                         </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
+                                        {project.techs && project.techs.length > 0 && (
+                                            <div className="pub-project-stack">
+                                                {project.techs.map(t => (
+                                                    <span key={t} className="pub-stack-item">{t}</span>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                </CardWrapper>
+                            );
+                        })}
                     </div>
                 )}
             </section>
