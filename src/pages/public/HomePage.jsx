@@ -216,9 +216,15 @@ export default function HomePage() {
                 ) : (
                     <div className="pub-projects-grid pub-reveal">
                         {visibleProjects.map(project => {
+                            const rawLink = project.link;
+                            let formattedLink = rawLink;
+                            if (rawLink && !rawLink.startsWith('http://') && !rawLink.startsWith('https://')) {
+                                formattedLink = `https://${rawLink}`;
+                            }
+
                             const CardWrapper = project.link ? 'a' : 'div';
                             const wrapperProps = project.link 
-                                ? { href: project.link, target: "_blank", rel: "noopener noreferrer", style: { textDecoration: 'none', color: 'inherit' } } 
+                                ? { href: formattedLink, target: "_blank", rel: "noopener noreferrer", style: { textDecoration: 'none', color: 'inherit' } } 
                                 : {};
 
                             return (
