@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useData } from '../context/DataContext';
+import { FileText, Rocket, Eye, CheckCircle, Inbox, Pin } from 'lucide-react';
 
 export default function Dashboard() {
     const { user } = useAuth();
@@ -30,32 +31,34 @@ export default function Dashboard() {
 
             <div className="stat-grid">
                 <div className="stat-card">
-                    <div className="stat-icon">✅</div>
+                    <div className="stat-icon"><CheckCircle size={28} /></div>
                     <div className="stat-value">{published}</div>
                     <div className="stat-label">Posts Publicados</div>
                 </div>
                 <div className="stat-card">
-                    <div className="stat-icon">📝</div>
+                    <div className="stat-icon"><FileText size={28} /></div>
                     <div className="stat-value">{drafts}</div>
                     <div className="stat-label">Rascunhos</div>
                 </div>
                 <div className="stat-card">
-                    <div className="stat-icon">🚀</div>
+                    <div className="stat-icon"><Rocket size={28} /></div>
                     <div className="stat-value">{projects.length}</div>
                     <div className="stat-label">Projetos Total</div>
                 </div>
                 <div className="stat-card">
-                    <div className="stat-icon">👁</div>
+                    <div className="stat-icon"><Eye size={28} /></div>
                     <div className="stat-value">{visibleProjects}</div>
                     <div className="stat-label">Projetos Públicos</div>
                 </div>
             </div>
 
-            <h2 className="section-title">📌 Atividade Recente</h2>
+            <h2 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Pin size={20} /> Atividade Recente
+            </h2>
 
             {recentItems.length === 0 ? (
                 <div className="empty-state">
-                    <div className="icon">📭</div>
+                    <div className="icon"><Inbox size={48} /></div>
                     <p>Nenhuma atividade ainda. Comece criando um post ou projeto!</p>
                     <div className="btn-group" style={{ justifyContent: 'center' }}>
                         <Link to="/admin/posts/new" className="btn btn-primary">Criar Post</Link>

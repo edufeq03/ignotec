@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
+import { Rocket, Eye, Lock } from 'lucide-react';
 
 const STATUS_MAP = {
     'planejamento': { label: 'Planejamento', badge: 'badge-info' },
@@ -31,7 +32,7 @@ export default function ProjectList() {
 
             {projects.length === 0 ? (
                 <div className="empty-state">
-                    <div className="icon">🚀</div>
+                    <div className="icon"><Rocket size={48} /></div>
                     <p>Nenhum projeto criado ainda.</p>
                     <Link to="/admin/projects/new" className="btn btn-primary">Criar Primeiro Projeto</Link>
                 </div>
@@ -44,8 +45,8 @@ export default function ProjectList() {
                                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
                                     <h3 className="card-title" style={{ marginBottom: 0 }}>{project.title}</h3>
                                     <div style={{ display: 'flex', gap: 6 }}>
-                                        <span className={`badge ${project.visible ? 'badge-success' : 'badge-danger'}`}>
-                                            {project.visible ? '👁 Público' : '🔒 Oculto'}
+                                        <span className={`badge ${project.visible ? 'badge-success' : 'badge-danger'}`} style={{ display: 'inline-flex', alignItems: 'center' }}>
+                                            {project.visible ? <><Eye size={12} style={{ marginRight: 4 }} /> Público</> : <><Lock size={12} style={{ marginRight: 4 }} /> Oculto</>}
                                         </span>
                                         <span className={`badge ${status.badge}`}>{status.label}</span>
                                     </div>
